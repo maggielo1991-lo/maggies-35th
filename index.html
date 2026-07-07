@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The One With The 35th Birthday • RSVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#6B5B95;
+    --purple-deep:#4E3D6E;
+    --purple-door:#7E6BA8;
+    --orange:#E8871E;
+    --orange-couch:#E07A2F;
+    --orange-soft:#F4A950;
+    --yellow:#FFDC5E;
+    --yellow-frame:#F5C518;
+    --red-dot:#FF4238;
+    --blue-dot:#42A2D6;
+    --cream:#FFF6E9;
+    --ink:#3A2E23;
+    --white:#FFFDF8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,220,94,.18), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(232,135,30,.14), transparent 45%),
+      var(--purple);
+    color:var(--ink);
+    min-height:100vh;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+
+  /* ---------- HERO / PEEPHOLE DOOR ---------- */
+  .hero{
+    background:linear-gradient(180deg,var(--purple-door),var(--purple-deep));
+    border-radius:22px;
+    padding:28px 18px 24px;
+    text-align:center;
+    color:var(--white);
+    box-shadow:0 10px 30px rgba(0,0,0,.28);
+    position:relative;
+    overflow:hidden;
+  }
+  .peephole{
+    width:96px;height:96px;margin:0 auto 14px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff8, transparent 55%), var(--purple-deep);
+    border:7px solid var(--yellow-frame);
+    outline:3px solid #c99b0f;
+    display:flex;align-items:center;justify-content:center;
+    font-size:44px;line-height:1;
+    box-shadow:0 4px 14px rgba(0,0,0,.35), inset 0 0 18px rgba(0,0,0,.45);
+  }
+  .kicker{
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--yellow);font-weight:800;margin-bottom:8px;
+  }
+  h1.logo{
+    font-family:'Gabriela',serif;
+    font-size:clamp(30px,8.5vw,42px);
+    line-height:1.15;
+    letter-spacing:.02em;
+    text-shadow:0 2px 0 rgba(0,0,0,.35);
+    margin-bottom:6px;
+  }
+  .dots span{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 5px;vertical-align:middle}
+  .dot-r{background:var(--red-dot)} .dot-b{background:var(--blue-dot)} .dot-y{background:var(--yellow)}
+  .tagline{font-style:italic;font-size:15px;color:#EDE6FF;margin-top:8px}
+
+  /* ---------- COUCH SCENE (pure CSS) ---------- */
+  .scene{margin:22px auto 4px;width:250px;position:relative;height:120px}
+  .rug{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:250px;height:26px;border-radius:50%;
+    background:repeating-linear-gradient(90deg,#8a5a3b 0 14px,#a06a45 14px 28px);opacity:.85}
+  .couch{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);width:210px;height:84px}
+  .couch .back{position:absolute;bottom:26px;left:12px;right:12px;height:52px;border-radius:16px 16px 6px 6px;
+    background:linear-gradient(180deg,var(--orange-soft),var(--orange-couch))}
+  .couch .seat{position:absolute;bottom:10px;left:0;right:0;height:34px;border-radius:12px;
+    background:linear-gradient(180deg,var(--orange-couch),#c4661f);box-shadow:0 4px 0 #9c4f16}
+  .couch .cushion{position:absolute;bottom:34px;width:58px;height:36px;border-radius:10px;
+    background:linear-gradient(180deg,#f6b45f,var(--orange-soft));box-shadow:inset 0 -5px 0 rgba(0,0,0,.12)}
+  .couch .c1{left:22px}.couch .c2{left:76px}.couch .c3{left:130px}
+  .couch .arm{position:absolute;bottom:10px;width:26px;height:56px;border-radius:14px;
+    background:linear-gradient(180deg,var(--orange-soft),#c4661f)}
+  .couch .arm.l{left:-8px}.couch .arm.r{right:-8px}
+  .couch .leg{position:absolute;bottom:0;width:10px;height:12px;background:#5b3a1e;border-radius:0 0 4px 4px}
+  .couch .leg.l{left:14px}.couch .leg.r{right:14px}
+  .scene .coffee{position:absolute;bottom:30px;right:-18px;font-size:26px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+  .scene .lamp{position:absolute;bottom:26px;left:-24px;font-size:30px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+  .perk-sign{
+    display:inline-block;margin-top:14px;padding:7px 18px;border-radius:999px;
+    background:#1e4d2b;color:var(--yellow);font-weight:800;letter-spacing:.14em;font-size:12px;
+    border:2px solid var(--yellow-frame);text-transform:uppercase;
+  }
+
+  /* ---------- DETAIL CARDS ---------- */
+  .details{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 24px}
+  .card{
+    background:var(--cream);border-radius:16px;padding:14px 12px;text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.18);border-top:4px solid var(--orange);
+  }
+  .card:nth-child(2){border-top-color:var(--blue-dot)}
+  .card:nth-child(3){border-top-color:var(--red-dot)}
+  .card:nth-child(4){border-top-color:var(--yellow-frame)}
+  .card .ico{font-size:24px}
+  .card .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8a7761;font-weight:800;margin-top:4px}
+  .card .val{font-weight:800;font-size:15px;margin-top:2px;line-height:1.25}
+
+  /* ---------- SECTIONS ---------- */
+  .panel{
+    background:var(--white);border-radius:22px;padding:22px 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  h2.sec{
+    font-family:'Gabriela',serif;font-size:24px;color:var(--purple-deep);
+    text-align:center;margin-bottom:4px;
+  }
+  .sec-sub{text-align:center;font-style:italic;color:#7a6a55;font-size:14px;margin-bottom:18px}
+
+  label{display:block;font-weight:800;font-size:14px;margin:16px 0 6px;color:var(--ink)}
+  input[type=text],input[type=number],textarea{
+    width:100%;padding:13px 14px;border-radius:12px;border:2px solid #E8D9C3;
+    background:var(--cream);font-family:'Nunito',sans-serif;font-size:16px;color:var(--ink);
+    transition:border-color .15s;
+  }
+  input:focus,textarea:focus{outline:none;border-color:var(--orange)}
+  textarea{min-height:84px;resize:vertical}
+  .hint{font-size:12.5px;color:#8a7761;margin-top:5px;font-style:italic}
+
+  /* attendance pills */
+  .pills{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{flex:1 1 30%;position:relative}
+  .pill input{position:absolute;opacity:0;pointer-events:none}
+  .pill span{
+    display:block;text-align:center;padding:12px 6px;border-radius:14px;border:2px solid #E8D9C3;
+    background:var(--cream);font-weight:800;font-size:14px;cursor:pointer;transition:.15s;line-height:1.3;
+  }
+  .pill small{display:block;font-weight:600;font-style:italic;font-size:11px;color:#8a7761;margin-top:2px}
+  .pill input:checked + span{border-color:var(--purple);background:var(--purple);color:#fff}
+  .pill input:checked + span small{color:#e8dcff}
+  .pill.yes input:checked + span{background:var(--orange);border-color:var(--orange)}
+  .pill.yes input:checked + span small{color:#fff0d9}
+
+  /* stepper */
+  .stepper{display:flex;align-items:center;gap:12px}
+  .stepper button{
+    width:46px;height:46px;border-radius:50%;border:none;font-size:24px;font-weight:800;
+    background:var(--purple);color:#fff;cursor:pointer;flex:none;line-height:1;
+  }
+  .stepper button:active{transform:scale(.94)}
+  .stepper .num{font-size:22px;font-weight:800;min-width:36px;text-align:center}
+  #extraFields .guest-row{margin-top:10px;position:relative}
+  #extraFields .guest-row::before{
+    content:"👤";position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;
+  }
+  #extraFields input{padding-left:40px}
+
+  .btn{
+    display:block;width:100%;margin-top:22px;padding:16px;border:none;border-radius:16px;
+    background:linear-gradient(135deg,var(--orange),#d1731a);color:#fff;
+    font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;cursor:pointer;
+    box-shadow:0 6px 16px rgba(232,135,30,.45);letter-spacing:.02em;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.secondary{background:var(--purple);box-shadow:0 6px 16px rgba(78,61,110,.4)}
+  .err{color:#c0392b;font-size:13px;font-weight:700;margin-top:6px;display:none}
+
+  /* ---------- CONFIRMATION ---------- */
+  .confirm{text-align:center;padding:14px 4px}
+  .confirm .big{font-size:56px;margin-bottom:10px}
+  .confirm h2{font-family:'Gabriela',serif;font-size:28px;color:var(--purple-deep);margin-bottom:10px}
+  .confirm p{font-size:16px;color:#5c4d3c;margin-bottom:8px}
+  .confirm .quote{
+    margin:16px auto 6px;padding:14px 16px;border-radius:14px;background:var(--cream);
+    font-style:italic;font-weight:700;color:var(--orange-couch);border:2px dashed var(--orange-soft);
+  }
+  .sync-note{font-size:12px;color:#9a8a74;margin-top:14px}
+
+  /* ---------- ADMIN ---------- */
+  .headcount{
+    display:flex;gap:10px;margin-bottom:16px;
+  }
+  .hc-card{flex:1;background:var(--cream);border-radius:14px;padding:12px;text-align:center;border-top:4px solid var(--orange)}
+  .hc-card.maybe{border-top-color:var(--yellow-frame)}
+  .hc-card.no{border-top-color:var(--red-dot)}
+  .hc-card .n{font-size:28px;font-weight:800;color:var(--purple-deep)}
+  .hc-card .t{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#8a7761;font-weight:800}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid #eadfce}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+  th{background:var(--purple);color:#fff;text-align:left;padding:10px 10px;font-size:12px;
+    text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+  td{padding:10px;border-bottom:1px solid #eee3d2;vertical-align:top}
+  tr:nth-child(even) td{background:var(--cream)}
+  .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;color:#fff}
+  .badge.Yes{background:#3d8b4f}.badge.No{background:var(--red-dot)}.badge.Maybe{background:var(--yellow-frame);color:var(--ink)}
+  .empty{text-align:center;color:#8a7761;font-style:italic;padding:26px 10px}
+
+  .footer{
+    text-align:center;margin-top:22px;color:#d9cfef;font-size:12.5px;
+  }
+  .footer a{color:var(--yellow);font-weight:800;text-decoration:none}
+  .hidden{display:none}
+  .back-link{display:inline-block;margin-bottom:14px;color:var(--purple);font-weight:800;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ MAIN VIEW ============ -->
+  <div id="view-main">
+    <header class="hero">
+      <div class="peephole">🎂</div>
+      <div class="kicker">You're invited to</div>
+      <h1 class="logo">T·H·E&nbsp;&nbsp;O·N·E<br>WITH THE 35<sup>th</sup><br>B·I·R·T·H·D·A·Y</h1>
+      <div class="dots" aria-hidden="true">
+        <span class="dot-r"></span><span class="dot-b"></span><span class="dot-y"></span>
+        <span class="dot-r"></span><span class="dot-b"></span><span class="dot-y"></span>
+      </div>
+      <p class="tagline">Could this party <strong>BE</strong> any more fun?</p>
+
+      <div class="scene" aria-hidden="true">
+        <div class="lamp">🛋️</div>
+        <div class="rug"></div>
+        <div class="couch">
+          <div class="arm l"></div><div class="arm r"></div>
+          <div class="back"></div>
+          <div class="cushion c1"></div><div class="cushion c2"></div><div class="cushion c3"></div>
+          <div class="seat"></div>
+          <div class="leg l"></div><div class="leg r"></div>
+        </div>
+        <div class="coffee">☕⛲</div>
+      </div>
+      <div class="perk-sign">☕ Maggie's Birthday</div>
+    </header>
+
+    <section class="details">
+      <div class="card"><div class="ico">🎉</div><div class="lbl">Event</div><div class="val">35th Birthday Party</div></div>
+      <div class="card"><div class="ico">📅</div><div class="lbl">Date</div><div class="val">August 15th</div></div>
+      <a class="card" href="https://www.google.com/maps/search/?api=1&amp;query=Sydney+Rowing+Club" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+        <div class="ico">📍</div><div class="lbl">Location</div><div class="val" style="color:var(--blue-dot);text-decoration:underline">Sydney Rowing Club</div></a>
+      <div class="card"><div class="ico">🕛</div><div class="lbl">Kick-off</div><div class="val">12 PM · À la carte<br><span style="font-weight:600;font-size:13px">(choose your own dish)</span></div></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="sec">RSVP</h2>
+      <p class="sec-sub">We were on a break… but now we're back for this!</p>
+
+      <form id="rsvpForm" novalidate>
+        <label for="fullName">Your full name</label>
+        <input type="text" id="fullName" autocomplete="name" placeholder="e.g. Regina Phalange" required>
+        <div class="err" id="errName">Oh. My. God. — we need your name!</div>
+
+        <label>Will you be there?</label>
+        <div class="pills">
+          <label class="pill yes"><input type="radio" name="attendance" value="Yes">
+            <span>Yes! 🙌<small>I'll be there for you</small></span></label>
+          <label class="pill"><input type="radio" name="attendance" value="No">
+            <span>No 😔<small>I'm on a break</small></span></label>
+          <label class="pill"><input type="radio" name="attendance" value="Maybe">
+            <span>Maybe 🤔<small>Unagi… undecided</small></span></label>
+        </div>
+        <div class="err" id="errAttend">Pick one — even Ross made a choice (eventually).</div>
+
+        <label>Bringing anyone? <span style="font-weight:600;color:#8a7761">(additional guests)</span></label>
+        <div class="stepper">
+          <button type="button" id="minusGuest" aria-label="Fewer guests">−</button>
+          <div class="num" id="guestCount">0</div>
+          <button type="button" id="plusGuest" aria-label="More guests">+</button>
+        </div>
+        <div id="extraFields"></div>
+        <div class="err" id="errExtras">Please name your plus-ones — "Ken Adams" works too.</div>
+
+        <button type="submit" class="btn">Send RSVP ☕</button>
+      </form>
+    </section>
+
+    <div class="footer">
+      The One Where You Actually RSVP · <a href="#" id="adminLink">Host view</a>
+    </div>
+  </div>
+
+  <!-- ============ CONFIRMATION VIEW ============ -->
+  <div id="view-confirm" class="hidden">
+    <section class="panel confirm">
+      <div class="big" id="cIcon">🎉</div>
+      <h2 id="cTitle">See you there!</h2>
+      <p id="cMsg"></p>
+      <div class="quote" id="cQuote"></div>
+      <p class="sync-note" id="cSync"></p>
+      <button class="btn secondary" id="btnAnother">Submit another RSVP</button>
+    </section>
+    <div class="footer">
+      <a href="#" id="adminLink2">Host view</a>
+    </div>
+  </div>
+
+  <!-- ============ ADMIN VIEW ============ -->
+  <div id="view-admin" class="hidden">
+    <section class="panel">
+      <a href="#" class="back-link" id="backLink">← Back to invite</a>
+      <h2 class="sec">The Guest List</h2>
+      <p class="sec-sub">The One Where Everyone Shows Up</p>
+
+      <div class="headcount">
+        <div class="hc-card"><div class="n" id="hcYes">0</div><div class="t">Confirmed 🎉</div></div>
+        <div class="hc-card maybe"><div class="n" id="hcMaybe">0</div><div class="t">Maybe 🤔</div></div>
+        <div class="hc-card no"><div class="n" id="hcNo">0</div><div class="t">Can't come 😔</div></div>
+      </div>
+      <p class="hint" style="text-align:center;margin-bottom:14px" id="hcTotal"></p>
+
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>Guest</th><th>Attending</th><th>+Guests</th><th>Guest names</th>
+          </tr></thead>
+          <tbody id="rsvpRows"></tbody>
+        </table>
+      </div>
+      <div class="empty hidden" id="emptyMsg">No RSVPs yet. They're probably stuck at Central Perk. ☕</div>
+      <p class="sync-note" id="adminSync"></p>
+    </section>
+  </div>
+
+</div>
+
+<script>
+/* ==========================================================================
+   GOOGLE SHEETS SYNC (optional but recommended)
+   1. Follow the steps in google-sheets-setup.md (ships alongside this file)
+      to deploy a free Google Apps Script Web App tied to your Sheet.
+   2. Paste the deployed Web App URL between the quotes below.
+   Until then, RSVPs are stored in this browser's localStorage — they
+   still persist on refresh, just per-device instead of shared.
+   ========================================================================== */
+const SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwQnOV5qzRYDlSH6S-FkT4lKnTq33-Vo_f5JkDd4eQJwcPD7jD3sMm_zgpeK-63Ok2AEg/exec";
+
+const LS_KEY = "friends35_rsvps";
+let rsvps = [];
+let usingSheets = false;
+
+/* ---------- storage ---------- */
+function loadLocal(){
+  try { rsvps = JSON.parse(localStorage.getItem(LS_KEY)) || []; }
+  catch(e){ rsvps = []; }
+}
+function saveLocal(){
+  try { localStorage.setItem(LS_KEY, JSON.stringify(rsvps)); } catch(e){}
+}
+async function loadFromSheets(){
+  if(!SHEETS_ENDPOINT) return false;
+  try{
+    const r = await fetch(SHEETS_ENDPOINT, {method:"GET"});
+    const data = await r.json();
+    if(Array.isArray(data)){ rsvps = data; usingSheets = true; saveLocal(); return true; }
+  }catch(e){ console.warn("Sheets fetch failed, using localStorage.", e); }
+  return false;
+}
+async function pushToSheets(record){
+  if(!SHEETS_ENDPOINT) return false;
+  try{
+    // text/plain avoids a CORS preflight; Apps Script parses the body itself.
+    const r = await fetch(SHEETS_ENDPOINT, {
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(record)
+    });
+    await r.text();
+    return true;
+  }catch(e){ console.warn("Sheets save failed, kept in localStorage.", e); return false; }
+}
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+function show(view){
+  ["view-main","view-confirm","view-admin"].forEach(v => $(v).classList.toggle("hidden", v !== view));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g,
+    c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+/* ---------- dynamic guest fields ---------- */
+let guestCount = 0;
+const MAX_GUESTS = 10;
+function renderGuestFields(){
+  $("guestCount").textContent = guestCount;
+  const wrap = $("extraFields");
+  const existing = [...wrap.querySelectorAll("input")].map(i => i.value);
+  wrap.innerHTML = "";
+  for(let i=0;i<guestCount;i++){
+    const row = document.createElement("div");
+    row.className = "guest-row";
+    row.innerHTML = '<input type="text" placeholder="Guest '+(i+1)+"'s full name\" autocomplete=\"off\">";
+    row.querySelector("input").value = existing[i] || "";
+    wrap.appendChild(row);
+  }
+}
+$("plusGuest").addEventListener("click", () => { if(guestCount < MAX_GUESTS){ guestCount++; renderGuestFields(); } });
+$("minusGuest").addEventListener("click", () => { if(guestCount > 0){ guestCount--; renderGuestFields(); } });
+
+/* ---------- form submit ---------- */
+$("rsvpForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const name = $("fullName").value.trim();
+  const att = document.querySelector('input[name="attendance"]:checked');
+  const extraInputs = [...document.querySelectorAll("#extraFields input")];
+  const extraNames = extraInputs.map(i => i.value.trim());
+
+  let ok = true;
+  $("errName").style.display = name ? "none" : "block"; if(!name) ok = false;
+  $("errAttend").style.display = att ? "none" : "block"; if(!att) ok = false;
+  const missingExtra = extraNames.some(n => !n);
+  $("errExtras").style.display = missingExtra ? "block" : "none"; if(missingExtra) ok = false;
+  if(!ok) return;
+
+  const record = {
+    id: Date.now() + "-" + Math.random().toString(36).slice(2,7),
+    name: name,
+    attendance: att.value,
+    extraCount: guestCount,
+    extraNames: extraNames,
+    notes: "",
+    submittedAt: new Date().toISOString()
+  };
+
+  rsvps.push(record);
+  saveLocal();
+  const btn = this.querySelector(".btn");
+  btn.disabled = true; btn.textContent = "Sending… 📞 (like Emergency Break-Through)";
+  const synced = await pushToSheets(record);
+  btn.disabled = false; btn.textContent = "Send RSVP ☕";
+
+  showConfirmation(record, synced);
+  this.reset();
+  guestCount = 0; renderGuestFields();
+});
+
+/* ---------- confirmation ---------- */
+function showConfirmation(record, synced){
+  const first = record.name.split(" ")[0];
+  const conf = {
+    Yes: {
+      icon:"🎉",
+      title:"See you there, " + esc(first) + "!",
+      msg:"You're locked in for August 15th at the Sydney Rowing Club, 12 PM. À la carte awaits!",
+      quote:"As Joey would say — “How you doin'?” 😏"
+    },
+    No: {
+      icon:"🛋️",
+      title:"You'll be missed, " + esc(first) + "…",
+      msg:"We get it — sometimes life is like being “on a break.” The couch won't be the same without you.",
+      quote:"“I wish I could, but I don't want to.” — okay Phoebe, we see you. 💜"
+    },
+    Maybe: {
+      icon:"🤔",
+      title:"PIVOT! …when you're ready, " + esc(first),
+      msg:"No pressure — come back and RSVP again once you know. We'll keep a cushion warm.",
+      quote:"“It's like all my life everyone's told me, ‘You're a shoe!’” — take your time deciding. 👟"
+    }
+  }[record.attendance];
+
+  $("cIcon").textContent = conf.icon;
+  $("cTitle").innerHTML = conf.title;
+  $("cMsg").textContent = conf.msg;
+  $("cQuote").textContent = conf.quote;
+  $("cSync").textContent = synced
+    ? "✅ Saved to the party Google Sheet."
+    : (SHEETS_ENDPOINT
+        ? "⚠️ Couldn't reach Google Sheets — saved on this device instead."
+        : "💾 Saved on this device (host hasn't connected Google Sheets yet).");
+  show("view-confirm");
+}
+$("btnAnother").addEventListener("click", () => show("view-main"));
+
+/* ---------- admin ---------- */
+function renderAdmin(){
+  const rows = $("rsvpRows");
+  rows.innerHTML = "";
+  let yes = 0, maybe = 0, no = 0;
+
+  rsvps.forEach(r => {
+    const extra = Number(r.extraCount) || 0;
+    if(r.attendance === "Yes")   yes   += 1 + extra;
+    if(r.attendance === "Maybe") maybe += 1 + extra;
+    if(r.attendance === "No")    no    += 1;
+    const names = Array.isArray(r.extraNames) ? r.extraNames.filter(Boolean).join(", ")
+                 : String(r.extraNames || "");
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      "<td><strong>" + esc(r.name) + "</strong></td>" +
+      '<td><span class="badge ' + esc(r.attendance) + '">' + esc(r.attendance) + "</span></td>" +
+      '<td style="text-align:center">' + extra + "</td>" +
+      "<td>" + (names ? esc(names) : "—") + "</td>";
+    rows.appendChild(tr);
+  });
+
+  $("hcYes").textContent = yes;
+  $("hcMaybe").textContent = maybe;
+  $("hcNo").textContent = no;
+  $("hcTotal").textContent = "Total confirmed headcount: " + yes +
+    (maybe ? " (plus " + maybe + " maybe" + (maybe>1?"s":"") + " — very Ross-and-Rachel of them)" : "");
+  $("emptyMsg").classList.toggle("hidden", rsvps.length > 0);
+  $("adminSync").textContent = usingSheets
+    ? "🔗 Live from Google Sheets."
+    : (SHEETS_ENDPOINT ? "⚠️ Google Sheets unreachable — showing this device's saved RSVPs."
+                       : "💾 Showing RSVPs saved on this device. Connect Google Sheets to see everyone's.");
+}
+async function openAdmin(e){
+  if(e) e.preventDefault();
+  await loadFromSheets();   // refresh from sheet if connected
+  renderAdmin();
+  show("view-admin");
+}
+$("adminLink").addEventListener("click", openAdmin);
+$("adminLink2").addEventListener("click", openAdmin);
+$("backLink").addEventListener("click", e => { e.preventDefault(); show("view-main"); });
+
+/* ---------- init ---------- */
+loadLocal();
+loadFromSheets();
+renderGuestFields();
+</script>
+</body>
+</html>
