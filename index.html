@@ -281,7 +281,7 @@
     </section>
 
     <div class="footer">
-      The One Where You Actually RSVP · <a href="#" id="adminLink">Host view</a>
+      The One Where You Actually RSVP
     </div>
   </div>
 
@@ -295,9 +295,6 @@
       <p class="sync-note" id="cSync"></p>
       <button class="btn secondary" id="btnAnother">Submit another RSVP</button>
     </section>
-    <div class="footer">
-      <a href="#" id="adminLink2">Host view</a>
-    </div>
   </div>
 
   <!-- ============ ADMIN VIEW ============ -->
@@ -518,14 +515,22 @@ async function openAdmin(e){
   renderAdmin();
   show("view-admin");
 }
-$("adminLink").addEventListener("click", openAdmin);
-$("adminLink2").addEventListener("click", openAdmin);
-$("backLink").addEventListener("click", e => { e.preventDefault(); show("view-main"); });
+/* Host view is hidden: it only opens via the secret #hostview URL */
+function maybeOpenAdmin(){
+  if(location.hash === "#hostview") openAdmin();
+}
+window.addEventListener("hashchange", maybeOpenAdmin);
+$("backLink").addEventListener("click", e => {
+  e.preventDefault();
+  history.replaceState(null, "", location.pathname + location.search);
+  show("view-main");
+});
 
 /* ---------- init ---------- */
 loadLocal();
 loadFromSheets();
 renderGuestFields();
+maybeOpenAdmin();
 </script>
 </body>
 </html>
